@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Payment = ({navigation}) => {
+const Payment = ({ navigation }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCVV] = useState('');
@@ -20,7 +20,7 @@ const Payment = ({navigation}) => {
     } catch (error) {
       console.error('Lỗi xóa dữ liệu trong AsyncStorage:', error);
     }
-  };  return (
+  }; return (
     <ScrollView style={styles.container}>
       {/* <View style={styles.header}>
         <Image source={require('../assets/logoshop.png')} style={styles.logo} />
@@ -35,7 +35,15 @@ const Payment = ({navigation}) => {
           onChangeText={setCardNumber}
         />
       </View>
-
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Địa chỉ</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Nhập địa chỉ"
+          value={cardNumber}
+          onChangeText={setCardNumber}
+        />
+      </View>
       {/* <View style={styles.formGroup}>
         <Text style={styles.label}>Ngày hết hạn</Text>
         <TextInput
@@ -57,14 +65,6 @@ const Payment = ({navigation}) => {
         />
       </View>
 
-      <View style={styles.paymentOptions}>
-        <Text style={styles.paymentLabel}>Chọn phương thức thanh toán</Text>
-        <View style={styles.paymentIcons}>
-          <FontAwesome name="cc-mastercard" size={40} color="#FF6F00" style={styles.paymentIcon} />
-          <FontAwesome name="cc-paypal" size={40} color="#00457C" style={styles.paymentIcon} />
-          <FontAwesome name="cc-visa" size={40} color="#6772E5" style={styles.paymentIcon} />
-        </View>
-      </View>
 
       <TouchableOpacity style={styles.button} onPress={handlePayment}>
         <Text style={styles.buttonText}>Thanh toán</Text>
